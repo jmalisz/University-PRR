@@ -1,6 +1,3 @@
-#include <openmp.h>
-#include <sequential.h>
-#include <utils.h>
 #include <chrono>
 #include <cmath>
 #include <fstream>
@@ -8,6 +5,11 @@
 #include <ios>
 #include <iostream>
 #include <limits>
+
+#include <openmp.h>
+#include <sequential.h>
+#include <threaded.h>
+#include <utils.h>
 
 int main()
 {
@@ -92,11 +94,12 @@ int main()
 		{
 			cout << "1 - Sequential" << endl;
 			cout << "2 - OpenMP" << endl;
+			cout << "3 - Threads" << endl;
 		};
 
 		print_algorithms();
 
-		while (!(cin >> user_input) || user_input < 1 || user_input > 2)
+		while (!(cin >> user_input) || user_input < 1 || user_input > 3)
 		{
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -113,6 +116,9 @@ int main()
 			break;
 		case 2:
 			OpenMPGaussianElimination(matrix);
+			break;
+		case 3:
+			ThreadedGaussianElimination(matrix, 100);
 			break;
 		default:
 			break;

@@ -28,6 +28,9 @@ public:
 	// Return number of rows
 	int rows() { return matrix_.size(); }
 
+	// Return rows beggining iterator
+	std::vector<std::vector<double>>::iterator begin() { return matrix_.begin(); }
+
 	// Return number of elements
 	int size()
 	{
