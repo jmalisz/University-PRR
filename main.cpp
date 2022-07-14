@@ -118,7 +118,7 @@ int main()
 			OpenMPGaussianElimination(matrix);
 			break;
 		case 3:
-			ThreadedGaussianElimination(matrix, 100);
+			ThreadedGaussianElimination(matrix, 4);
 			break;
 		default:
 			break;

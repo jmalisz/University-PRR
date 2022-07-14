@@ -70,6 +70,7 @@ void ThreadedGaussianElimination(Matrix2D<double> &matrix, int thread_number)
 			matrix(diagonal, col) /= pivot_value;
 		}
 
+		// TODO: Add thread pooling to improve performance
 		for (int start_row = 0, end_row = rows_per_thread; start_row < matrix_rows;)
 		{
 			threads.push_back(std::thread(ReduceDiagonal, std::ref(matrix), start_row, end_row, diagonal));
