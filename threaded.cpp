@@ -1,29 +1,30 @@
 #include <threaded.h>
+#include <iostream>
 #include <stdexcept>
 #include <thread>
 #include <vector>
-#include <iostream>
 
-void ReduceDiagonal(Matrix2D<double> &matrix, int start_row, int end_row, int diagonal)
+namespace
 {
-	int matrix_cols = matrix.cols();
-
-	// Reduce elements other than diagonal to 0
-	for (int row = start_row; row < end_row; row++)
+	void ReduceDiagonal(Matrix2D<double> &matrix, int start_row, int end_row, int diagonal)
 	{
+		int matrix_cols = matrix.cols();
+
+		// Reduce elements other than diagonal to 0
+		for (int row = start_row; row < end_row; row++)
 		{
 			if (row == diagonal)
 			{
 				continue;
 			}
-		}
 
-		double ratio = matrix(row, diagonal);
+			double ratio = matrix(row, diagonal);
 
-		// Reduce row elements by pivot * factor
-		for (int col = diagonal; col < matrix_cols; col++)
-		{
-			matrix(row, col) -= matrix(diagonal, col) * ratio;
+			// Reduce row elements by pivot * factor
+			for (int col = diagonal; col < matrix_cols; col++)
+			{
+				matrix(row, col) -= matrix(diagonal, col) * ratio;
+			}
 		}
 	}
 }

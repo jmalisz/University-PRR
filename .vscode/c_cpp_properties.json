@@ -3,7 +3,9 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                // Path to OpenMPI
+                "~/opt/**"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/g++",

@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <iostream>
 
 // Matrix class to simplify operations
 template <class T>
@@ -28,8 +29,36 @@ public:
 	// Return number of rows
 	int rows() { return matrix_.size(); }
 
-	// Return rows beggining iterator
-	std::vector<std::vector<double>>::iterator begin() { return matrix_.begin(); }
+	// Return continuous array
+	void populate_array(T array[])
+	{
+		int i = 0;
+
+		for (auto &row : matrix_)
+		{
+			for (auto &element : row)
+			{
+				array[i] = element;
+				i++;
+			}
+		}
+	}
+
+	// Replace stored matrix values by provided array
+	void replace_by_array(T array[])
+	{
+		int i = 0;
+
+		for (auto &row : matrix_)
+		{
+			for (auto &element : row)
+			{
+				element = array[i];
+				i++;
+			}
+			// std::cout << i << std::endl;
+		}
+	}
 
 	// Return number of elements
 	int size()

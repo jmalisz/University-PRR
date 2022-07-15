@@ -45,11 +45,9 @@ void OpenMPGaussianElimination(Matrix2D<double> &matrix)
 #pragma omp parallel for
 		for (int row = 0; row < matrix_rows; row++)
 		{
+			if (row == diagonal)
 			{
-				if (row == diagonal)
-				{
-					continue;
-				}
+				continue;
 			}
 
 			double ratio = matrix(row, diagonal);

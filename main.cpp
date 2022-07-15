@@ -7,6 +7,7 @@
 #include <limits>
 
 #include <openmp.h>
+#include <openmpi.h>
 #include <sequential.h>
 #include <threaded.h>
 #include <utils.h>
@@ -94,12 +95,13 @@ int main()
 		{
 			cout << "1 - Sequential" << endl;
 			cout << "2 - OpenMP" << endl;
-			cout << "3 - Threads" << endl;
+			cout << "3 - OpenMPI" << endl;
+			cout << "4 - Threads" << endl;
 		};
 
 		print_algorithms();
 
-		while (!(cin >> user_input) || user_input < 1 || user_input > 3)
+		while (!(cin >> user_input) || user_input < 1 || user_input > 4)
 		{
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -118,6 +120,11 @@ int main()
 			OpenMPGaussianElimination(matrix);
 			break;
 		case 3:
+			// Interfacing this handler program with OpenMPI isn't trivial
+			// It's easier to just call it as another program here
+			// TODO: Add external program execution there
+			throw std::runtime_error("Error: Not implemented yet, see README.md for more info");
+		case 4:
 			ThreadedGaussianElimination(matrix, 4);
 			break;
 		default:
