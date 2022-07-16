@@ -52,5 +52,9 @@
 		"thread": "cpp",
 		"condition_variable": "cpp",
 		"mutex": "cpp"
-	}
+	},
+	"editor.formatOnSave": true,
+	"editor.codeActionsOnSave": {
+	  "source.fixAll.eslint": true
+	},
 }

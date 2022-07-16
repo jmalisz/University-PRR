@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+message DoubleMatrix {
+    uint32 rows = 1;
+    uint32 cols = 2;
+    repeated double data = 3 [packed=true];
+}
+
+message ReducedDoubleMatrix {
+    repeated double data = 1 [packed=true];
+}
+
+message WorkerReduceDiagonalPayload {
+    repeated double data = 1 [packed=true];
+    repeated double diagonalArray = 2 [packed=true];
+    uint32 diagonal = 3;
+    uint32 rows = 4;
+}
+
+// For testing
+message Empty {}
+
+service RootService {
+    rpc rpcGaussianElimination (DoubleMatrix) returns (ReducedDoubleMatrix) {}
+}
+
+service WorkerService {
+    rpc rpcReduceDiagonal (WorkerReduceDiagonalPayload) returns (ReducedDoubleMatrix) {}
+}
